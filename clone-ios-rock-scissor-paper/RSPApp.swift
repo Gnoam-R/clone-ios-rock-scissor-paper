@@ -11,6 +11,13 @@ class RSPApp {
     var menuMessage: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
     var errorMessage: String = "잘못된 입력입니다. 다시 시도해주세요."
     
+    var userPlayer: Player
+    var pcPlayer: Player
+    
+    let isUserPlayer: Bool = true
+    let isPcPlayer: Bool = false
+    
+    
     func run () {
         while isRunning {
             // TODO: 플레이어가 정상적으로 승리한 경우 또는 종료 키를 입력한 경우 isRunning = false
@@ -21,12 +28,20 @@ class RSPApp {
             else {
                 continue
             }
-//            guard let
-//            // 유저 플레이어가 정상적으로 가위 바위 보 값을 입력을 함
-//            // pc 플레이어가 정상적으로 가위 바위 보 값을 만들어냄
-//            else{
-//                print(errorMessage)
-//            }
+            processMenu(menu)
+            
+        }
+    }
+    
+    private func processMenu(_ menu: Menu) {
+        switch menu {
+        case .rsp(let hand):
+            // hand를 유저, pc player 객체에 저장
+            userPlayer = Player(hand, isUserPlayer)
+            pcPlayer = Player(Hand.randomizeHand(), isPcPlayer)
+        case .exit:
+            print("게임 종료")
+            isRunning = false
         }
     }
     

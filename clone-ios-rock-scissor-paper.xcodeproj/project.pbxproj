@@ -11,6 +11,7 @@
 		CCBB9C762B11BB89001EE0E8 /* RSPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBB9C752B11BB89001EE0E8 /* RSPApp.swift */; };
 		CCBB9C782B11C02D001EE0E8 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBB9C772B11C02D001EE0E8 /* Menu.swift */; };
 		CCBB9C7A2B11E64E001EE0E8 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBB9C792B11E64E001EE0E8 /* Hand.swift */; };
+		CCCFDB4A2B139AD20072924A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFDB492B139AD20072924A /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		CCBB9C752B11BB89001EE0E8 /* RSPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPApp.swift; sourceTree = "<group>"; };
 		CCBB9C772B11C02D001EE0E8 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CCBB9C792B11E64E001EE0E8 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		CCCFDB492B139AD20072924A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				CCBB9C752B11BB89001EE0E8 /* RSPApp.swift */,
 				CCBB9C772B11C02D001EE0E8 /* Menu.swift */,
 				CCBB9C792B11E64E001EE0E8 /* Hand.swift */,
+				CCCFDB492B139AD20072924A /* Player.swift */,
 			);
 			path = "clone-ios-rock-scissor-paper";
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				CCBB9C782B11C02D001EE0E8 /* Menu.swift in Sources */,
 				CCBB9C7A2B11E64E001EE0E8 /* Hand.swift in Sources */,
 				CCBB9C6F2B11B422001EE0E8 /* main.swift in Sources */,
+				CCCFDB4A2B139AD20072924A /* Player.swift in Sources */,
 				CCBB9C762B11BB89001EE0E8 /* RSPApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
