@@ -10,24 +10,21 @@ final class RSPApp {
     var isRunning: Bool = true
     var menuMessage: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
     var errorMessage: String = "잘못된 입력입니다. 다시 시도해주세요."
-    
     var drawMessage: String = "비겼습니다!"
     var winMessage: String = "이겼습니다!"
     var loseMessage: String = "졌습니다!"
+    var exitMessage: String = "게임 종료"
     
-    var hand = Hand.rock
+    var hand : Hand?
     
     var userPlayer: Player {
         get {
-            print("userPlayer :", hand)
-            return Player(self.hand)
+            return Player(hand: self.hand)
         }
     }
     var pcPlayer: Player {
         get {
-            let random = Hand.randomizeHand()
-            print("pcPlayer :", random)
-            return Player(random)
+            return Player(hand: nil)
         }
     }
     
@@ -45,26 +42,23 @@ final class RSPApp {
             processMenu(menu)
         }
     }
-    
+}
+
+extension RSPApp {
     private func processMenu(_ menu: Menu) {
         switch menu {
         case .rsp(let hand):
             // hand를 유저, pc player 객체에 저장
             self.hand = hand
-            let result = judgeRSP(userPlayer, pcPlayer)
-            switch result {
-            case .draw:
-                print("draw")
-            case.winner(let Player):
-                
-            }
+            let winloseResult = judgeRSP(userPlayer, pcPlayer)
+            handleResult(winloseResult)
+        
             // 이제 이기거나 비기거나를 비교해야됨
         case .exit:
             print("게임 종료")
             isRunning = false
         }
     }
-    
     
     private func judgeRSP(_ userPlayer: Player, _ pcPlayer: Player) -> RSPResult {
         if userPlayer.hand == pcPlayer.hand {
@@ -75,7 +69,29 @@ final class RSPApp {
             return .winner(winner)
         }
     }
+    
+    private func handleResult(_ winloseResult: RSPResult) {
+        switch winloseResult {
+        case .draw:
+            print(drawMessage)
+        case.winner(let Player):
+            if Player.isUser {
+                print(winMessage)
+            }
+            else {
+                print(loseMessage)
+            }
+            exit()
+        }
+    }
+    
+    private func exit() {
+        print(exitMessage)
+        self.isRunning = false
+    }
+}
 
+extension RSPApp {
     private func promptInput() -> String? {
         guard let promptInput = Swift.readLine() else {
             return nil

@@ -9,8 +9,19 @@ import Foundation
 
 class Player {
     var hand: Hand
+    var isUser: Bool
     
-    init(_ hand: Hand) {
+    static func randomizeHand() -> Hand {
+        return Hand.allCases.randomElement() ?? .rock
+    }
+    
+    init(hand: Hand?) {
+        guard let hand else {
+            self.isUser = false
+            self.hand = Self.randomizeHand()
+            return
+        }
+        self.isUser = true
         self.hand = hand
     }
 }

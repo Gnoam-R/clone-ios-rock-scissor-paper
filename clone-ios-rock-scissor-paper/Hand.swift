@@ -12,9 +12,9 @@ enum Hand: Int, CaseIterable{
     
     static let numberOfFingers = 5
     
-    static func randomizeHand() -> Hand {
-        return Hand.allCases.randomElement() ?? .rock
-    }
+//    static func randomizeHand() -> Hand {
+//        return Hand.allCases.randomElement() ?? .rock
+//    }
     
     func wins(_ another: Hand) -> Bool {
         switch self {
