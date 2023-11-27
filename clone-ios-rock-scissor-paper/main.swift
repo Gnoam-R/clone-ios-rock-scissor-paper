@@ -7,6 +7,6 @@
 
 //import Foundation
 
-var startGame = RSPApp()
+let startGame = RSPApp()
 startGame.run()
 

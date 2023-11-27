@@ -6,17 +6,30 @@
 //
 import Foundation
 // MARK: - RSP game control
-class RSPApp {
+final class RSPApp {
     var isRunning: Bool = true
     var menuMessage: String = "가위(1), 바위(2), 보(3)! <종료 : 0> :"
     var errorMessage: String = "잘못된 입력입니다. 다시 시도해주세요."
     
-    var userPlayer: Player
-    var pcPlayer: Player
+    var drawMessage: String = "비겼습니다!"
+    var winMessage: String = "이겼습니다!"
+    var loseMessage: String = "졌습니다!"
     
-    let isUserPlayer: Bool = true
-    let isPcPlayer: Bool = false
+    var hand = Hand.rock
     
+    var userPlayer: Player {
+        get {
+            print("userPlayer :", hand)
+            return Player(self.hand)
+        }
+    }
+    var pcPlayer: Player {
+        get {
+            let random = Hand.randomizeHand()
+            print("pcPlayer :", random)
+            return Player(random)
+        }
+    }
     
     func run () {
         while isRunning {
@@ -26,10 +39,10 @@ class RSPApp {
                   let inputToInt = Int(input),
                   let menu = Menu(rspInput: inputToInt)
             else {
+                print(errorMessage)
                 continue
             }
             processMenu(menu)
-            
         }
     }
     
@@ -37,20 +50,38 @@ class RSPApp {
         switch menu {
         case .rsp(let hand):
             // hand를 유저, pc player 객체에 저장
-            userPlayer = Player(hand, isUserPlayer)
-            pcPlayer = Player(Hand.randomizeHand(), isPcPlayer)
+            self.hand = hand
+            let result = judgeRSP(userPlayer, pcPlayer)
+            switch result {
+            case .draw:
+                print("draw")
+            case.winner(let Player):
+                
+            }
+            // 이제 이기거나 비기거나를 비교해야됨
         case .exit:
             print("게임 종료")
             isRunning = false
         }
     }
     
+    
+    private func judgeRSP(_ userPlayer: Player, _ pcPlayer: Player) -> RSPResult {
+        if userPlayer.hand == pcPlayer.hand {
+            return .draw
+        }
+        else {
+            let winner = userPlayer.hand.wins(pcPlayer.hand) ? userPlayer : pcPlayer
+            return .winner(winner)
+        }
+    }
+
     private func promptInput() -> String? {
         guard let promptInput = Swift.readLine() else {
             return nil
         }
         // 공백 문자가 들어간것을 예방
-        var editPromtInput = promptInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        let editPromtInput = promptInput.trimmingCharacters(in: .whitespacesAndNewlines)
         // promptInput 값이 비었을 경우를 대비
         return promptInput.isEmpty ? nil : editPromtInput
     }

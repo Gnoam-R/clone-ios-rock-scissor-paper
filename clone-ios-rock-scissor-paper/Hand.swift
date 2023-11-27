@@ -10,8 +10,10 @@ enum Hand: Int, CaseIterable{
     case scissor = 1
     case paper = 3
     
+    static let numberOfFingers = 5
+    
     static func randomizeHand() -> Hand {
-        Hand.allCases.randomElement() ?? .rock
+        return Hand.allCases.randomElement() ?? .rock
     }
     
     func wins(_ another: Hand) -> Bool {

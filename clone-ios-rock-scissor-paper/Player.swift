@@ -8,11 +8,9 @@
 import Foundation
 
 class Player {
-    var isPlayer : Bool
     var hand: Hand
     
-    init(_ hand: Hand, _ isPlayer: Bool) {
+    init(_ hand: Hand) {
         self.hand = hand
-        self.isPlayer = isPlayer
     }
 }
